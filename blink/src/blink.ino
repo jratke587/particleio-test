@@ -9,6 +9,7 @@
 void setup() {
   // Put initialization like pinMode and begin functions here.
   pinMode(D3, OUTPUT);
+  pinMode(A0, INPUT);
 }
 
 // loop() runs over and over again, as quickly as it can execute.
@@ -18,4 +19,6 @@ void loop() {
   delay(500);
   digitalWrite(D3, LOW);
   delay(500);
+  uint32_t analogValue = analogRead(A0);
+  Particle.publish(String(analogValue));
 }
