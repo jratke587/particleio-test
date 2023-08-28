@@ -22,11 +22,11 @@ void loop() {
     delay(500);
   }
   for (int x = 0; x < 2; x++) {
-    for (int i=0; i<255; i++) {
+    for (int i=0; i<=255; i++) {
       analogWrite(D3, i);
       delay(3.92);
     }
-    for (int i=255; i>0; i--) {
+    for (int i=255; i>=0; i--) {
       analogWrite(D3, i);
       delay(3.92);
     }
