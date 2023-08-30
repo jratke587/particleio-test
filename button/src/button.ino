@@ -1,5 +1,5 @@
 int led = D3;
-int led_builtin = D7;
+int led2 = D4;
 int button = D5;
 
 bool ledSwitch = true;
@@ -7,16 +7,16 @@ bool ledSwitch = true;
 void setup() {
   pinMode(button, INPUT_PULLDOWN);
   pinMode(led, OUTPUT);
-  pinMode(led_builtin, OUTPUT);
+  pinMode(led2, OUTPUT);
   digitalWrite(led, ledSwitch);
-  digitalWrite(led_builtin, !ledSwitch);
+  digitalWrite(led2, !ledSwitch);
 }
 
 void loop() {
   if (digitalRead(button)) {
     ledSwitch = !ledSwitch;
     digitalWrite(led, ledSwitch);
-    digitalWrite(led_builtin, !ledSwitch);
+    digitalWrite(led2, !ledSwitch);
   }
   while (digitalRead(button)) {
     delay(50);
