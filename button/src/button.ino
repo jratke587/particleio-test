@@ -1,21 +1,24 @@
+int led = D3;
+int led_builtin = D7;
+int button = D5;
+
 bool ledSwitch = true;
 
 void setup() {
-  pinMode(D5, INPUT_PULLDOWN);
-  pinMode(D3, OUTPUT);
-  pinMode(D7, OUTPUT);
-  digitalWrite(D3, ledSwitch);
-  digitalWrite(D7, !ledSwitch);
+  pinMode(button, INPUT_PULLDOWN);
+  pinMode(led, OUTPUT);
+  pinMode(led_builtin, OUTPUT);
+  digitalWrite(led, ledSwitch);
+  digitalWrite(led_builtin, !ledSwitch);
 }
 
-// loop() runs over and over again, as quickly as it can execute.
 void loop() {
-  if (digitalRead(D5)) {
+  if (digitalRead(button)) {
     ledSwitch = !ledSwitch;
-    digitalWrite(D3, ledSwitch);
-    digitalWrite(D7, !ledSwitch);
+    digitalWrite(led, ledSwitch);
+    digitalWrite(led_builtin, !ledSwitch);
   }
-  while (digitalRead(D5)) {
+  while (digitalRead(button)) {
     delay(50);
   }
 }
