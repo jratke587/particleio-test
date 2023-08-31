@@ -17,7 +17,7 @@ void loop() {
   ledIndex++;
   if (ledIndex == numLeds) { //reset ledIndex when it gets out of range
     ledIndex = 0;
-
+  }
   int val = analogRead(potentiometer);
   int delayTime = map(val, 0, 4096, 100, 1500); //convert analog value to a range from 100 to 1500
   delay(delayTime);
