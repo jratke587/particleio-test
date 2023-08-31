@@ -1,5 +1,5 @@
 int potentiometer = A0;
-int ledPins[2] = {D3, D4};
+int ledPins[3] = {D4, D3, D6};
 int numLeds = sizeof(ledPins) / sizeof(ledPins[0]); //length of ledPins
 int ledIndex = 0; 
 
