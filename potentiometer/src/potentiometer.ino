@@ -14,10 +14,7 @@ void loop() {
   for (int i=0; i<numLeds; i++) {
     digitalWrite(ledPins[i], ledIndex == i); //set led HIGH if it's index matches ledIndex, othewise low
   }
-  ledIndex++;
-  if (ledIndex == numLeds) { //reset ledIndex when it gets out of range
-    ledIndex = 0;
-  }
+  ledIndex = (ledIndex + 1) % numLeds; //increment or reset ledIndex
   int val = analogRead(potentiometer);
   int delayTime = map(val, 0, 4096, 100, 1500); //convert analog value to a range from 100 to 1500
   delay(delayTime);
