@@ -1,9 +1,32 @@
-#include <env.h>
+int ledPin = D4;
+int buttonPin = D5;
+
 void setup() {
-  Serial.begin(9600);
+  pinMode(ledPin, OUTPUT);
+  pinMode(buttonPin, INPUT_PULLDOWN);
+  digitalWrite(ledPin, LOW);
+  Particle.function("blink", blinkLED);
 }
 
 void loop() {
-  Serial.println(secretvalue);
-  delay(1000);
+  if(digitalRead(buttonPin)) {
+    callNextArgon();
+    while (digitalRead(buttonPin)) {
+      delay(50);
+    }
+  }
+  delay(50);
+}
+
+int blinkLED(String param) {
+    digitalWrite(ledPin, HIGH);
+    delay(1000);
+    callNextArgon();
+    delay(1000);
+    digitalWrite(ledPin, LOW);
+    return 0;
+}
+
+void callNextArgon() {
+  Particle.publish("blinkNextArgon");
 }
