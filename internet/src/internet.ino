@@ -1,11 +1,14 @@
 int ledPin = D4;
 int buttonPin = D5;
 
+bool ignoreEvents = false;
+
 void setup() {
   pinMode(ledPin, OUTPUT);
   pinMode(buttonPin, INPUT_PULLDOWN);
   digitalWrite(ledPin, LOW);
   Particle.function("blink", blinkLED);
+  Particle.function("disable", disableEvents);
 }
 
 void loop() {
@@ -28,5 +31,12 @@ int blinkLED(String param) {
 }
 
 void callNextArgon() {
-  Particle.publish("blinkNextArgon");
+  if (!ignoreEvents) {
+    Particle.publish("blinkNextArgon");
+  }
+}
+
+int disableEvents(String param) {
+  ignoreEvents = !ignoreEvents;
+  return ignoreEvents;
 }
